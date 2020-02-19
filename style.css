@@ -1,3 +1,5 @@
+
+
 body {
     height: 100%;
     background-color: cadetblue;
@@ -14,3 +16,28 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
+
+#forcastTab li a.active {
+    border-bottom-color: transparent;
+    background-color: var(--CFColors-Orange-rgba);
+    color: var(--CFColors-darkGrey-rgba);
+    font-weight: bold;
+}
+
+#forecastTab li a {
+    border-bottom-color: transparent;
+    color: white;
+    font-weight: 400;
+}
+
+:root {
+    /* Color Theme Swatches in RGBA */
+    --CFColors-darkGrey-rgba: rgba(33, 33, 33, 1);
+    --CFColors-grayBlue-rgba: rgba(44, 66, 81, .5);
+    --CfColors-darkBlue-rgba: rgba(0, 115, 171, .5);
+    --CFColors-Orange-rgba: rgba(247, 148, 29, .5);
+    --CFColors-ltGrey-rgba: rgba(223, 227, 228, .5);
+    --CFColors-Black-rgba: rgba(0, 0, 0, 1);
+}
+
+
