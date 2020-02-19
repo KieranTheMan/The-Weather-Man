@@ -71,3 +71,28 @@ body {
     color: white;
     resize: vertical;
 }
+
+#currentTemp {
+    font-size: 5em;
+    font-family: titling-gothic-fb-wide, sans-serif;
+    color: white;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: var(--CFColors-darkGrey-rgba);
+}
+
+#wpConditions {
+        background-color: var(--CFColors-Orange-rgba);
+        color: white;
+        padding: 20px;
+        resize: vertical;
+    }
+
+#wpForecast {
+        background-color: var(--CfColors-darkBlue-rgba);
+        color: white;
+        padding: 20px;
+        resize: vertical;
+        font-size: 1em;
+    }
+    
