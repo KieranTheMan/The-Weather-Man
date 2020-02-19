@@ -96,3 +96,14 @@ body {
         font-size: 1em;
     }
     
+#wpFooter {
+        font-size: 1em;
+        color: var(--CFColors-darkGrey-rgba);
+    }
+    
+#wpFooter div a {
+        font-size: 1em;
+        color: var(--CFColors-darkGrey-rgba);
+    }
+
+    
