@@ -59,3 +59,15 @@ body {
     -webkit-text-stroke-color: var(--CFColors-darkGrey-rgba);
 
 }
+
+#wpMain {
+    color: white;
+    padding: 20px;
+    resize: vertical;
+}
+
+#wpCurrent {
+    background-color: var(--CFColors-grayBlue-rgba);
+    color: white;
+    resize: vertical;
+}
