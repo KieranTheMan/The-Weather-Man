@@ -1,4 +1,12 @@
-
+:root {
+    /* Color Theme Swatches in RGBA */
+    --CFColors-darkGrey-rgba: rgba(33, 33, 33, 1);
+    --CFColors-grayBlue-rgba: rgba(44, 66, 81, .5);
+    --CfColors-darkBlue-rgba: rgba(0, 115, 171, .5);
+    --CFColors-Orange-rgba: rgba(247, 148, 29, .5);
+    --CFColors-ltGrey-rgba: rgba(223, 227, 228, .5);
+    --CFColors-Black-rgba: rgba(0, 0, 0, 1);
+}
 
 body {
     height: 100%;
@@ -30,14 +38,24 @@ body {
     font-weight: 400;
 }
 
-:root {
-    /* Color Theme Swatches in RGBA */
-    --CFColors-darkGrey-rgba: rgba(33, 33, 33, 1);
-    --CFColors-grayBlue-rgba: rgba(44, 66, 81, .5);
-    --CfColors-darkBlue-rgba: rgba(0, 115, 171, .5);
-    --CFColors-Orange-rgba: rgba(247, 148, 29, .5);
-    --CFColors-ltGrey-rgba: rgba(223, 227, 228, .5);
-    --CFColors-Black-rgba: rgba(0, 0, 0, 1);
+#weatherIcon {
+    max-width: 100%;
+    height: auto;
+
 }
 
+#location {
+    font-weight: bolder;
+}
+
+#wpTitle {
+    font-family: titling-gothic-fb-wide, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.5em;
+    color: var(--CFColors-darkGrey-rgba);
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: var(--CFColors-darkGrey-rgba);
+}
 
