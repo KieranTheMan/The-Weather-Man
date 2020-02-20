@@ -23,5 +23,21 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
     let DsProxyLink = 'https://cors-anywhere.herokuapp.com/';
     let DsApiLink = `${DsProxyLink}https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}?exclude=minutely,alerts,flags`;
 
-    
+    fetch(DsApiLink)
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            //JSON data
+            let resultsHTML = "";
+            let tableHTML = "";
+            let summary = data.currently.summary;
+            let temperature = data.currently.temperature;
+            let icon = data.currently.icon;
+            let precipProbability = data.currently.precipProbability;
+            let humidity = data.currently.humidity;
+            let windSpeed = data.currently.windSpeed
+            let ts = new Date(data.currently.time * 1000);
+            let forecastDate = `${wDay[ts.getDay()]} ${wMonth[ts.getMonth()]} ${ts.getDate()}`
+
 }
