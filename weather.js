@@ -21,7 +21,7 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
 
     //to avoid cors issue
     let DsProxyLink = 'https://cors-anywhere.herokuapp.com/';
-    let DsApiLink = `${DsProxyLink}https://api.darksky.net/`;
+    let DsApiLink = `${DsProxyLink}https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}?exclude=minutely,alerts,flags`;
 
     
 }
