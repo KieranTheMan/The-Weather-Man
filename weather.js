@@ -88,6 +88,17 @@ for (let i = 0; i < rowCount; i++) {
     let tempHigh = 0;
     let timeValue;
 
+    //formate unix time to be displayed
+    let hours = ts.getHours();
+    if (hours > 0 && hours <= 12) {
+        timeValue = '' + hours;
+    }else if (hours > 12) {
+        timeValue = '' + (hours - 12)
+    }else if (hours === 0) {
+        timeValue = '12';
+    }
+    timeValue += (hours >= 12) ? 'PM' : 'AM'; //get AM/PM
+
 }
 
 
