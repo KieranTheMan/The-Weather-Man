@@ -80,5 +80,15 @@ function renderDailyForecast(fcData) {
     if (rowCount > 8) {
         rowCount = 8;
     }
+    
+for (let i = 0; i < rowCount; i++) {
+    
+    let ts = new Date(fcData.data[i].time * 1000);
+    let summary = "";
+    let tempHigh = 0;
+    let timeValue;
+
+}
+
 
 }
