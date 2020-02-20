@@ -68,6 +68,17 @@ function fetchLoaction(latitude, longitude) {
             document.getElementById('location').innerHTML = data.results[4].formatted_address;
         })
         .catch(err => {
-            throw(`Sorry, An Error occured`)
+            throw(`Sorry, An Error occured. ${err}`)
         })
+}
+
+//render daily forcast
+function renderDailyForecast(fcData) {
+    let resultsHTML = '<tr><th>Time</th><th>Conditions</th><th>Temp</th><th>Precip</th></tr>';
+    let rowCount = fcData.data.length;
+
+    if (rowCount > 8) {
+        rowCount = 8;
+    }
+
 }
