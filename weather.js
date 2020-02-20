@@ -40,4 +40,17 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
             let ts = new Date(data.currently.time * 1000);
             let forecastDate = `${wDay[ts.getDay()]} ${wMonth[ts.getMonth()]} ${ts.getDate()}`
 
+            //set up values for current conditions
+            document.getElementById('dayTime').innerHTML = forcastDate;
+            document.getElementById('summary').innerHTML = summary;
+            document.getElementById('currentTemp').innerHTML = Math.round(temperature)&deg;
+            document.getElementById('weatherIcon').src = getICON(icon);
+            document.getElementById('perciptation').innerHTML = `Perciptation ${precipProbability*100}%`
+            document.getElementById('humidity').innerHTML = `Humidity ${Math.round(humidity*100)}%`;
+            document.getElementById('wind').innerHTML = `Winds ${Math.round(windSpeed)} mph`;
+
+            //forcasts tabs
+            document.getElementById('dailyForecast').innerHTML = renderWeeklyForecast(data.daily);
+            documnet.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
+        })
 }
