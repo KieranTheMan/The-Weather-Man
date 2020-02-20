@@ -53,4 +53,7 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
             document.getElementById('dailyForecast').innerHTML = renderWeeklyForecast(data.daily);
             documnet.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
         })
+        .catch(err => {
+            throw('Sorry, An Error occured. ${err}')
+        });
 }
