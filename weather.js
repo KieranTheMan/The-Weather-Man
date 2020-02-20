@@ -15,10 +15,8 @@ const iconValue = {
         PARTLY_CLOUDY_NIGHT: 'partly-cloudy-night'
     }
 
-const apiKey = '415a6a77c9c19927d59b36e19cdd96fa';
-
-function fetchWeatherReport(apiKey, latitude, longitude) {
-
+function fetchWeatherReport(latitude, longitude) {
+    const apiKey = '415a6a77c9c19927d59b36e19cdd96fa';
     //to avoid cors issue
     let DsProxyLink = 'https://cors-anywhere.herokuapp.com/';
     let DsApiLink = `${DsProxyLink}https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}?exclude=minutely,alerts,flags`;
@@ -56,4 +54,20 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
         .catch(err => {
             throw('Sorry, An Error occured. ${err}')
         });
+}
+
+function fetchLoaction(latitude, longitude) {
+    const apiGKey = '';
+    let googleApiLink = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiGKey}`;
+
+    fetch(googleApiLink)
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            document.getElementById('location').innerHTML = data.results[4].formatted_address;
+        })
+        .catch(err => {
+            throw(`Sorry, An Error occured`)
+        })
 }
