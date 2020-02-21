@@ -104,11 +104,11 @@ function getICON(icon) {
         case iconValue.CLEARDAY:
             return 'images/SunndyDay.png';
         
-        case isconValue.CLOUDY:
-        case isconValue.PARTLY_CLOUDY_DAY:
+        case iconValue.CLOUDY:
+        case iconValue.PARTLY_CLOUDY_DAY:
             return 'images/MostleySunny.png';
         
-        case isconValue.CLEARNIGHT:
+        case iconValue.CLEARNIGHT:
             return 'images/ClearMoon.png'
         
         case iconValue.PARTLY_CLOUDY_NIGHT:
