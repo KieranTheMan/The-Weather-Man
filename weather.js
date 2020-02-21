@@ -17,7 +17,7 @@ const iconValue = {
 
 function fetchWeatherReport(apiKey, latitude, longitude) {
     //to avoid cors issue
-    let DsProxyLink = 'https://cors-anywhere.herokuapp.com/';
+    let DsProxyLink = `https://cors-anywhere.herokuapp.com/`;
     let DsApiLink = `${DsProxyLink}https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}?exclude=minutely,alerts,flags`;
 
     fetch(DsApiLink)
@@ -26,8 +26,8 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
         })
         .then(data => {
             //JSON data
-            let resultsHTML = "";
-            let tableHTML = "";
+            // let resultsHTML = "";
+            // let tableHTML = "";
             let summary = data.currently.summary;
             let temperature = data.currently.temperature;
             let icon = data.currently.icon;
@@ -38,17 +38,17 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
             let forecastDate = `${wDay[ts.getDay()]} ${wMonth[ts.getMonth()]} ${ts.getDate()}`
 
             //set up values for current conditions
-            document.getElementById('dayTime').innerHTML = forecastDate;
+            document.getElementById('daytime').innerHTML = forecastDate;
             document.getElementById('summary').innerHTML = summary;
-            document.getElementById('currentTemp').innerHTML = Math.round(temperature)&deg;
-            document.getElementById('weatherIcon').src = getICON(icon);
+            document.getElementById('currentTemp').innerHTML = `${Math.round(temperature)}&deg`;
+            //document.getElementById('weatherIcon').src = getICON(icon);
             document.getElementById('perciptation').innerHTML = `Perciptation ${precipProbability*100}%`
             document.getElementById('humidity').innerHTML = `Humidity ${Math.round(humidity*100)}%`;
             document.getElementById('wind').innerHTML = `Winds ${Math.round(windSpeed)} mph`;
 
             //forcasts tabs
-            document.getElementById('dailyForecast').innerHTML = renderWeeklyForecast(data.daily);
-            documnet.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
+            // document.getElementById('dailyForecast').innerHTML = renderWeeklyForecast(data.daily);
+            // documnet.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
         })
         .catch(err => {
             throw(`Sorry, An Error occured. ${err}`)
@@ -71,35 +71,35 @@ function fetchLocation(apiKey, latitude, longitude) {
 }
 
 //render daily forcast
-function renderDailyForecast(fcData) {
-    let resultsHTML = '<tr><th>Time</th><th>Conditions</th><th>Temp</th><th>Precip</th></tr>';
-    let rowCount = fcData.data.length;
+// function renderDailyForecast(fcData) {
+//     let resultsHTML = '<tr><th>Time</th><th>Conditions</th><th>Temp</th><th>Precip</th></tr>';
+//     let rowCount = fcData.data.length;
 
-    if (rowCount > 8) {
-        rowCount = 8;
-    }
+//     if (rowCount > 8) {
+//         rowCount = 8;
+//     }
     
-    for (let i = 0; i < rowCount; i++) {
+//     for (let i = 0; i < rowCount; i++) {
     
-        let ts = new Date(fcData.data[i].time * 1000);
-        let summary = "";
-        let tempHigh = 0;
-        let timeValue;
+//         let ts = new Date(fcData.data[i].time * 1000);
+//         let summary = "";
+//         let tempHigh = 0;
+//         let timeValue;
 
-        //formate unix time to be displayed
-        let hours = ts.getHours();
-        if (hours > 0 && hours <= 12) {
-            timeValue = '' + hours;
-        }else if (hours > 12) {
-            timeValue = '' + (hours - 12)
-        }else if (hours === 0) {
-            timeValue = '12';
-        }
-        timeValue += (hours >= 12) ? 'PM' : 'AM'; //get AM/PM
-    }
-}
+//         //formate unix time to be displayed
+//         let hours = ts.getHours();
+//         if (hours > 0 && hours <= 12) {
+//             timeValue = '' + hours;
+//         }else if (hours > 12) {
+//             timeValue = '' + (hours - 12)
+//         }else if (hours === 0) {
+//             timeValue = '12';
+//         }
+//         timeValue += (hours >= 12) ? 'PM' : 'AM'; //get AM/PM
+//     }
+// }
 
-function initGeolocation () {
+function initGeolocation() {
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success, fail)
     }else {
