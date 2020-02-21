@@ -15,7 +15,7 @@ const iconValue = {
         PARTLY_CLOUDY_NIGHT: 'partly-cloudy-night'
     }
 
-function fetchWeatherReport(latitude, longitude) {
+function fetchWeatherReport(apiKey, latitude, longitude) {
     const apiKey = '415a6a77c9c19927d59b36e19cdd96fa';
     //to avoid cors issue
     let DsProxyLink = 'https://cors-anywhere.herokuapp.com/';
@@ -39,7 +39,7 @@ function fetchWeatherReport(latitude, longitude) {
             let forecastDate = `${wDay[ts.getDay()]} ${wMonth[ts.getMonth()]} ${ts.getDate()}`
 
             //set up values for current conditions
-            document.getElementById('dayTime').innerHTML = forcastDate;
+            document.getElementById('dayTime').innerHTML = forecastDate;
             document.getElementById('summary').innerHTML = summary;
             document.getElementById('currentTemp').innerHTML = Math.round(temperature)&deg;
             document.getElementById('weatherIcon').src = getICON(icon);
@@ -52,13 +52,12 @@ function fetchWeatherReport(latitude, longitude) {
             documnet.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
         })
         .catch(err => {
-            throw('Sorry, An Error occured. ${err}')
+            throw(`Sorry, An Error occured. ${err}`)
         });
 }
 
-function fetchLoaction(latitude, longitude) {
-    const apiGKey = '';
-    let googleApiLink = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiGKey}`;
+function fetchLoaction(apiKey, latitude, longitude) {
+    let googleApiLink = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
 
     fetch(googleApiLink)
         .then(response => {
@@ -69,7 +68,7 @@ function fetchLoaction(latitude, longitude) {
         })
         .catch(err => {
             throw(`Sorry, An Error occured. ${err}`)
-        })
+        });
 }
 
 //render daily forcast
@@ -81,25 +80,31 @@ function renderDailyForecast(fcData) {
         rowCount = 8;
     }
     
-for (let i = 0; i < rowCount; i++) {
+    for (let i = 0; i < rowCount; i++) {
     
-    let ts = new Date(fcData.data[i].time * 1000);
-    let summary = "";
-    let tempHigh = 0;
-    let timeValue;
+        let ts = new Date(fcData.data[i].time * 1000);
+        let summary = "";
+        let tempHigh = 0;
+        let timeValue;
 
-    //formate unix time to be displayed
-    let hours = ts.getHours();
-    if (hours > 0 && hours <= 12) {
-        timeValue = '' + hours;
-    }else if (hours > 12) {
-        timeValue = '' + (hours - 12)
-    }else if (hours === 0) {
-        timeValue = '12';
+        //formate unix time to be displayed
+        let hours = ts.getHours();
+        if (hours > 0 && hours <= 12) {
+            timeValue = '' + hours;
+        }else if (hours > 12) {
+            timeValue = '' + (hours - 12)
+        }else if (hours === 0) {
+            timeValue = '12';
+        }
+        timeValue += (hours >= 12) ? 'PM' : 'AM'; //get AM/PM
     }
-    timeValue += (hours >= 12) ? 'PM' : 'AM'; //get AM/PM
-
 }
 
-
+function intiGeolocation () {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, fail)
+    }else {
+        alert('Sorry, your Browser does not support geolocation services.')
+    }
 }
+
