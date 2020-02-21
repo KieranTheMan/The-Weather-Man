@@ -16,7 +16,6 @@ const iconValue = {
     }
 
 function fetchWeatherReport(apiKey, latitude, longitude) {
-    const apiKey = '';
     //to avoid cors issue
     let DsProxyLink = 'https://cors-anywhere.herokuapp.com/';
     let DsApiLink = `${DsProxyLink}https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}?exclude=minutely,alerts,flags`;
@@ -56,7 +55,7 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
         });
 }
 
-function fetchLoaction(apiKey, latitude, longitude) {
+function fetchLocation(apiKey, latitude, longitude) {
     let googleApiLink = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
 
     fetch(googleApiLink)
@@ -100,7 +99,7 @@ function renderDailyForecast(fcData) {
     }
 }
 
-function intiGeolocation () {
+function initGeolocation () {
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success, fail)
     }else {
