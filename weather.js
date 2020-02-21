@@ -41,7 +41,7 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
             document.getElementById('daytime').innerHTML = forecastDate;
             document.getElementById('summary').innerHTML = summary;
             document.getElementById('currentTemp').innerHTML = `${Math.round(temperature)}&deg`;
-            //document.getElementById('weatherIcon').src = getICON(icon);
+            document.getElementById('weatherIcon').src = getICON(icon);
             document.getElementById('perciptation').innerHTML = `Perciptation ${precipProbability*100}%`
             document.getElementById('humidity').innerHTML = `Humidity ${Math.round(humidity*100)}%`;
             document.getElementById('wind').innerHTML = `Winds ${Math.round(windSpeed)} mph`;
@@ -98,6 +98,36 @@ function fetchLocation(apiKey, latitude, longitude) {
 //         timeValue += (hours >= 12) ? 'PM' : 'AM'; //get AM/PM
 //     }
 // }
+
+function getICON(icon) {
+    switch (icon) {
+        case iconValue.CLEARDAY:
+            return 'images/SunndyDay.png';
+        
+        case isconValue.CLOUDY:
+        case isconValue.PARTLY_CLOUDY_DAY:
+            return 'images/MostleySunny.png';
+        
+        case isconValue.CLEARNIGHT:
+            return 'images/ClearMoon.png'
+        
+        case iconValue.PARTLY_CLOUDY_NIGHT:
+                return 'images/CloudyMoon.png'
+            
+        case iconValue.RAIN:
+                return 'images/Rain.png';
+        
+        case iconValue.SNOW:
+                return 'images/SNOW.png';
+        
+        case iconValue.SLEET:
+                return 'images/Sleet.png';
+        
+        default:
+                return 'images/SunnyDay.png';
+    }
+        
+}
 
 function initGeolocation() {
     if(navigator.geolocation) {
