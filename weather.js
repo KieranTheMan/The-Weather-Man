@@ -114,3 +114,7 @@ function success(position) {
     fetchLocation(googleApiKey, position.coords.latitude, position.coords.longitude);
     fetchWeatherReport(dsKey, position.coords.latitude, position.coords.longitude);
 }
+
+function fail() {
+    alert('Sorry, your browser does not support geolocation services')
+};
