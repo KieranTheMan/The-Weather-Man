@@ -16,7 +16,7 @@ const iconValue = {
     }
 
 function fetchWeatherReport(apiKey, latitude, longitude) {
-    const apiKey = '415a6a77c9c19927d59b36e19cdd96fa';
+    const apiKey = '';
     //to avoid cors issue
     let DsProxyLink = 'https://cors-anywhere.herokuapp.com/';
     let DsApiLink = `${DsProxyLink}https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}?exclude=minutely,alerts,flags`;
@@ -108,3 +108,9 @@ function intiGeolocation () {
     }
 }
 
+function success(position) {
+    let dsKey ='415a6a77c9c19927d59b36e19cdd96fa';
+    let googleApiKey ='AIzaSyBdVAjiNMg5ZVnrWrQVmc_RTgZVBzZa_sA';
+    fetchLocation(googleApiKey, position.coords.latitude, position.coords.longitude);
+    fetchWeatherReport(dsKey, position.coords.latitude, position.coords.longitude);
+}
