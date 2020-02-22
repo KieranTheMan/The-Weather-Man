@@ -26,33 +26,33 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
         })
         .then(data => {
             //JSON data
-            // let resultsHTML = "";
+            //let resultsHTML = "";
             // let tableHTML = "";
             let summary = data.currently.summary;
             let temperature = data.currently.temperature;
             let icon = data.currently.icon;
             let precipProbability = data.currently.precipProbability;
             let humidity = data.currently.humidity;
-            let windSpeed = data.currently.windSpeed
+            let windSpeed = data.currently.windSpeed;
             let ts = new Date(data.currently.time * 1000);
-            let forecastDate = `${wDay[ts.getDay()]} ${wMonth[ts.getMonth()]} ${ts.getDate()}`
+            let forecastDate = `${wDay[ts.getDay()]} ${wMonth[ts.getMonth()]} ${ts.getDate()}`;
 
             //set up values for current conditions
             document.getElementById('daytime').innerHTML = forecastDate;
             document.getElementById('summary').innerHTML = summary;
             document.getElementById('currentTemp').innerHTML = `${Math.round(temperature)}&deg`;
             document.getElementById('weatherIcon').src = getICON(icon);
-            document.getElementById('perciptation').innerHTML = `Perciptation ${precipProbability*100}%`
+            document.getElementById('perciptation').innerHTML = `Perciptation ${precipProbability*100}%`;
             document.getElementById('humidity').innerHTML = `Humidity ${Math.round(humidity*100)}%`;
             document.getElementById('wind').innerHTML = `Winds ${Math.round(windSpeed)} mph`;
 
             //forcasts tabs
             document.getElementById('dailyForecast').innerHTML = renderWeeklyForecast(data.daily);
-            documnet.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
+            //document.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
         })
         .catch(err => {
             throw(`Sorry, An Error occured. ${err}`)
-        });
+        })
 }
 
 function fetchLocation(apiKey, latitude, longitude) {
@@ -71,12 +71,12 @@ function fetchLocation(apiKey, latitude, longitude) {
 }
 
 function renderWeeklyForecast(fcData) {
-    let resultHTML = '<tr><th>Time</th><th>Conditions</th><th>Hi</th><th>Lo</th></tr>'
+    let resultsHTML = '<tr><th>Time</th><th>Conditions</th><th>Hi</th><th>Lo</th></tr>';
     let rowCount = fcData.data.length;
     if(rowCount > 8) {rowCount = 8};
 
     for(let i = 0; i < rowCount; i++) {
-        let ts = new Data(fcData.data[i].time * 1000);
+        let ts = new Date(fcData.data[i].time * 1000);
         let dayTime = wDay[ts.getDay()];
         let summary = fcData.data[i].summary;
         let tempHigh = `${Math.round(fcData.data[i].temperatureHigh)}&deg`;
@@ -86,7 +86,12 @@ function renderWeeklyForecast(fcData) {
     }
 
     return resultsHTML;
-}
+};
+
+//render grid colums
+function renderRow(dayTime, summary, tempHigh, colVal4) {
+    return `<tr><td>${dayTime}</td><td>${summary}</td><td>${tempHigh}</td><td>${colVal4}</tr>`
+};
 
 
 //render daily forcast
@@ -125,7 +130,7 @@ function getICON(icon) {
         
         case iconValue.CLOUDY:
         case iconValue.PARTLY_CLOUDY_DAY:
-            return 'images/MostleySunny.png';
+            return 'images/MostlySunny.png';
         
         case iconValue.CLEARNIGHT:
             return 'images/ClearMoon.png'
