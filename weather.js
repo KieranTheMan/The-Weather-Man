@@ -47,8 +47,8 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
             document.getElementById('wind').innerHTML = `Winds ${Math.round(windSpeed)} mph`;
 
             //forcasts tabs
-            // document.getElementById('dailyForecast').innerHTML = renderWeeklyForecast(data.daily);
-            // documnet.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
+            document.getElementById('dailyForecast').innerHTML = renderWeeklyForecast(data.daily);
+            documnet.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
         })
         .catch(err => {
             throw(`Sorry, An Error occured. ${err}`)
@@ -70,21 +70,40 @@ function fetchLocation(apiKey, latitude, longitude) {
         });
 }
 
+function renderWeeklyForecast(fcData) {
+    let resultHTML = '<tr><th>Time</th><th>Conditions</th><th>Hi</th><th>Lo</th></tr>'
+    let rowCount = fcData.data.length;
+    if(rowCount > 8) {rowCount = 8};
+
+    for(let i = 0; i < rowCount; i++) {
+        let ts = new Data(fcData.data[i].time * 1000);
+        let dayTime = wDay[ts.getDay()];
+        let summary = fcData.data[i].summary;
+        let tempHigh = `${Math.round(fcData.data[i].temperatureHigh)}&deg`;
+        let tempLow = `${Math.round(fcData.data[i].temperatureLow)}&deg`;
+
+        resultsHTML += renderRow(dayTime, summary, tempHigh, tempLow);
+    }
+
+    return resultsHTML;
+}
+
+
 //render daily forcast
 // function renderDailyForecast(fcData) {
-//     let resultsHTML = '<tr><th>Time</th><th>Conditions</th><th>Temp</th><th>Precip</th></tr>';
-//     let rowCount = fcData.data.length;
+//      let resultsHTML = '<tr><th>Time</th><th>Conditions</th><th>Temp</th><th>Precip</th></tr>';
+//      let rowCount = fcData.data.length;
 
-//     if (rowCount > 8) {
-//         rowCount = 8;
-//     }
+//      if (rowCount > 8) {
+//          rowCount = 8;
+//      }
     
-//     for (let i = 0; i < rowCount; i++) {
+//      for (let i = 0; i < rowCount; i++) {
     
-//         let ts = new Date(fcData.data[i].time * 1000);
-//         let summary = "";
-//         let tempHigh = 0;
-//         let timeValue;
+//          let ts = new Date(fcData.data[i].time * 1000);
+//          let summary = "";
+//          let tempHigh = 0;
+//          let timeValue;
 
 //         //formate unix time to be displayed
 //         let hours = ts.getHours();
