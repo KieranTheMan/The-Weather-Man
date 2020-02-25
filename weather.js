@@ -26,8 +26,8 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
         })
         .then(data => {
             //JSON data
-            //let resultsHTML = "";
-            // let tableHTML = "";
+            // let resultsHTML = '';
+            // let tableHTML = '';
             let summary = data.currently.summary;
             let temperature = data.currently.temperature;
             let icon = data.currently.icon;
@@ -48,7 +48,7 @@ function fetchWeatherReport(apiKey, latitude, longitude) {
 
             //forcasts tabs
             document.getElementById('dailyForecast').innerHTML = renderWeeklyForecast(data.daily);
-            //document.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
+            document.getElementById('weeklyForecast').innerHTML = renderDailyForecast(data.hourly);
         })
         .catch(err => {
             throw(`Sorry, An Error occured. ${err}`)
@@ -67,7 +67,7 @@ function fetchLocation(apiKey, latitude, longitude) {
         })
         .catch(err => {
             throw(`Sorry, An Error occured. ${err}`)
-        });
+        })
 }
 
 function renderWeeklyForecast(fcData) {
@@ -86,42 +86,50 @@ function renderWeeklyForecast(fcData) {
     }
 
     return resultsHTML;
-};
+}
 
-//render grid colums
-function renderRow(dayTime, summary, tempHigh, colVal4) {
-    return `<tr><td>${dayTime}</td><td>${summary}</td><td>${tempHigh}</td><td>${colVal4}</tr>`
-};
+
 
 
 //render daily forcast
-// function renderDailyForecast(fcData) {
-//      let resultsHTML = '<tr><th>Time</th><th>Conditions</th><th>Temp</th><th>Precip</th></tr>';
-//      let rowCount = fcData.data.length;
+function renderDailyForecast(fcData) {
+      let resultsHTML = '<tr><th>Time</th><th>Conditions</th><th>Temp</th><th>Precip</th></tr>';
+      let rowCount = fcData.data.length;
 
-//      if (rowCount > 8) {
-//          rowCount = 8;
-//      }
+      if (rowCount > 8) {rowCount = 8};
     
-//      for (let i = 0; i < rowCount; i++) {
+       for (let i = 0; i < rowCount; i++) {
     
-//          let ts = new Date(fcData.data[i].time * 1000);
-//          let summary = "";
-//          let tempHigh = 0;
-//          let timeValue;
+     let ts = new Date(fcData.data[i].time * 1000);
+     let summary = '';
+     let tempHigh = 0;
+     let timeValue;
+     let precipProbability;
 
-//         //formate unix time to be displayed
-//         let hours = ts.getHours();
-//         if (hours > 0 && hours <= 12) {
-//             timeValue = '' + hours;
-//         }else if (hours > 12) {
-//             timeValue = '' + (hours - 12)
-//         }else if (hours === 0) {
-//             timeValue = '12';
-//         }
-//         timeValue += (hours >= 12) ? 'PM' : 'AM'; //get AM/PM
-//     }
-// }
+  //formate unix time to be displayed
+     let hours = ts.getHours();
+     if (hours > 0 && hours <= 12) {
+         timeValue = '' + hours;
+     } else if (hours > 12) {
+         timeValue = '' + (hours - 12)
+     } else if (hours === 0) {
+         timeValue = '12';
+     }
+     timeValue += (hours >= 12) ? 'PM' : 'AM'; //get AM/PM
+
+         summary = fcData.data[i].summary;
+         tempHigh = `${Math.round(fcData.data[i].temperature)}&deg`;
+         precipProbability = `${Math.round(fcData.data[i].precipProbability * 100)}%`;
+         resultsHTML += renderRow(timeValue, summary, tempHigh, precipProbability);
+
+     }
+     return resultsHTML;
+}
+
+//render grid colums
+function renderRow(dayTime, summary, tempHigh, colVal4) {
+    return `<tr><td>${dayTime}</td><td>${summary}</td><td>${tempHigh}</td><td>${colVal4}</td></tr>`
+}
 
 function getICON(icon) {
     switch (icon) {
