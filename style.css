@@ -1,10 +1,10 @@
 :root {
     /* Color Theme Swatches in RGBA */
-    --CFColors-darkGrey-rgba: rgba(33, 33, 33, 1);
+    --CFColors-darkGrey-rgba: rgb(0, 0, 0);
     --CFColors-grayBlue-rgba: rgba(44, 66, 81, .5);
-    --CfColors-darkBlue-rgba: rgba(0, 115, 171, .5);
+    --CfColors-darkBlue-rgba: rgba(9, 12, 36, 0.5);
     --CFColors-Orange-rgba: rgba(247, 148, 29, .5);
-    --CFColors-ltGrey-rgba: rgba(223, 227, 228, .5);
+    --CFColors-ltGrey-rgba: rgba(41, 32, 32, 0.5);
     --CFColors-Black-rgba: rgba(0, 0, 0, 1);
 }
 
@@ -34,18 +34,20 @@ body {
 
 #forecastTab li a {
     border-bottom-color: transparent;
-    color: white;
+    color: black;
+    font-weight: bold;
     font-weight: 400;
 }
 
 #weatherIcon {
-    max-width: 50%;
+    max-width: 30%;
     height: auto;
 
 }
 
 #location {
     font-weight: bolder;
+    font-size: 20px;
 }
 
 #wpTitle {
@@ -74,7 +76,7 @@ body {
 }
 
 #currentTemp {
-    font-size: 5em;
+    font-size: 8em;
     font-family: titling-gothic-fb-wide, sans-serif;
     color: white;
     -webkit-text-fill-color: white;
@@ -85,8 +87,12 @@ body {
 #wpConditions {
         background-color: var(--CFColors-Orange-rgba);
         color: white;
-        padding: 20px;
+        font-size: 30px;
+        padding-top: 80px;
+        text-align: center;
+        font-weight: bolder;
         resize: vertical;
+        -webkit-text-stroke-color: var(--CFColors-darkGrey-rgba);
     }
 
 #wpForecast {
@@ -107,3 +113,12 @@ body {
         color: var(--CFColors-darkGrey-rgba);
     }
 
+#dailyForecast {
+    color: white;
+    background-color: var(--CfColors-darkBlue-rgba);
+}
+
+#weeklyForecast {
+    color: white;
+    background-color: var(--CfColors-darkBlue-rgba);
+}
