@@ -1,4 +1,5 @@
 # TheWeatherMan
+https://kierantheman.github.io/TheWeatherMan/
 
 ## Task
 To build a website that reports the weather in a user's location, utilising Google's location API and Darksky’s weather API. Also develop the website with HTML5, CSS3, BootStrap and vanilla JavaScript ES6+.
@@ -13,7 +14,7 @@ I chose to develop a weather report website, to improve my knowledge and underst
 </ul>
 
 ## Design
-This design is simplistic showing the  temperature with conditions displayed within a easy to read table and images that reflect the current weather state.
+This design is simplistic showing the temperature with conditions displayed within a easy to read table and images that reflect the current weather state. Including a seprate section highlighting the precipitation, humidity and wind speed.
 
 ## Tech Stack
 <ul>
